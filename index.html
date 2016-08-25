@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Introducción a Git</title>
+
+	<meta name="description" content="Charla introductoria a VCS y GIT">
+	<meta name="author" content="Ximena Garcia">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="css/custom/bootstrap.min.css">
+	<link rel="stylesheet" href="css/custom/git-talk.css">
+
+	<!-- Reveal default styles -->
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/highlightjs/solarized_dark.css">
+
+	<!-- Force fontawesome -->
+	<link rel="stylesheet" href="css/custom/font-awesome.min.css">
+
+	<!--[if lt IE 9]><script src="lib/js/html5shiv.js"></script><![endif]-->
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Controlando Versiones con Git</h1>
+				<h1><small>Estruja cada comando</small></h1>
+			</section>
+
+			<section id="about">
+				<h1 class="no-btm-margin"><img class="img-circle middle" src="img/fotito.jpg" alt="fotito" height="100px"/>  Ximena Garcia</h1>
+				<h2><small>Full Stack Developer</small></h2>
+				<ul class="nav navbar-text smaller">
+					<li><span class="fa-twitter"><a href="https://twitter.com/ChmlGr"> @ChmlGr</a></span></li>
+					<li><span class="fa-github"><a href="https://github.com/ChmlGr"> github.com/ChmlGr</a></span></li>
+				</ul>
+				<div style="position:fixed;bottom:0;right:0;">
+					<img src="img/gardetux.png" alt="CaFeLUG" class="pull-right" height="100px">
+				</div>
+			</section>
+
+			<section id="VCS">
+
+				<section>
+					<h1>Control de Versiones</h1>
+				</section>
+
+				<section>
+					<h2>Signos de que podrías necesitarlo</h2>
+					<ul class="mrg-btm">
+						<li class="fragment jstf">
+							Archivos con fechas en sus nombres
+						</li>
+						<li class="fragment jstf">
+							Archivos con 'ultimo'/'posta'/'elQueVale'/'viejo'/'anterior' en sus nombres
+						</li>
+						<li class="fragment jstf">
+							Cadenas de emails con zips/rars/tars como adjunto a todo el equipo (en la que nunca podes encontrar la ultima versión)
+						</li>
+						<li class="fragment jstf">
+							Dolor de cabeza al unir los cambios de dos personas que trabajaron en paralelo
+						</li>
+						<li class="fragment jstf">
+							Y muchos otros...
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Sistemas de Control de Versiones (VCS)</h2>
+					<ul class="mrg-btm">
+						<li class="fragment jstf">
+							Guardan los cambios que un directorio y sus archivos sufren durante el transcurso de un proyecto
+						</li>
+						<li class="fragment jstf">
+							Permiten identificar <strong>cuando</strong> se introdujeron las modificaciones,
+							<strong>quien</strong> las introdujo,
+							<strong>cuales</strong> archivos cambiaron,
+							<strong>como</strong> cambiaron esos archivos y el <strong>por que</strong> de dichos cambios
+						</li>
+						<li class="fragment jstf">
+							Permiten volver atrás cambios en caso de que se hayan generado <em class="error">errores</em> <small class="stroke">(y saber a quien hecharle la culpa)</small>
+						</li>
+						<li class="fragment jstf">
+							Facilitan el trabajo en equipo evitando situaciones comunes como las ya mencionadas
+						</li>
+					</ul>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<img src="img/git-logo.png" alt="GIT" class="img-rounded" />
+					<h3><small><em>O como Linus nos soluciono muchos problemas</em></small></h3>
+				</section>
+				<section>
+					<h2>Breve historia</h2>
+					<p class="jstf">
+						Git nace en 2005 para cubrir las necesidades del equipo de desarrollo del Kernel de Linux.
+					</p>
+					<div class="jstf">
+						<p>
+							Las principales características que se buscaron fueron:
+						</p>
+						<ul>
+							<li>Velocidad</li>
+							<li>Simpleza en el diseño</li>
+							<li>Fuerte soporte para el desarrollo no-lineal (muchas ramas paralelas)</li>
+							<li>Completamente distribuido</li>
+							<li>Capaz de manejar grandes proyectos eficientemente</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h2>Git en pocas palabras</h2>
+					<h3><small>Olvida todos los otros VCSs</small></h3>
+				</section>
+
+				<section>
+					<ol>
+						<li>Diferencias vs Instantáneas
+							<p>Git creara una instantanea de los archivos en cada commit.</p>
+						</li>
+						<li>Operaciones locales
+							<p>Casi todas las operaciones en Git se pueden hacer offline.</p>
+						</li>
+						<li>Integridad
+							<p>Todo en Git se encuentra validado por una 'suma de verificación' o 'checksum' (HASH generado mediante SHA-1) basado en cada archivo que se encuentra bajo control de versiones.</p>
+						</li>
+						<li>Agregado de información
+							<p>Git suele solamente agregar información a su base de datos, lo cual permite deshacer facilmente las operaciones.</p>
+						</li>
+					</ol>
+
+				</section>
+
+				<section>
+					<h3>5. Los tres estados</h3>
+					<ul class="mrg-btm">
+						<li class="fragment jstf">Modificado - Uno o varios archivos tienen cambios pero aun no fueron guardados en la base de datos local</li>
+						<li class="fragment jstf">"En escena" (<strong>Staged</strong>) - Uno o varios archivos que poseen cambios están a la espera de que se les haga una instantánea</li>
+						<li class="fragment jstf">"Enviado"/"Guardado" (<strong>Committed</strong>) - Una instantánea de los archivos se encuentran guardados en la base de datos local</li>
+					</ul>
+				</section>
+				<section>
+					<img src="img/areas.png" alt="areas" height="100%">
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Instalando y configurando Git</h2>
+				</section>
+				<section>
+					<h3>Disponible para:</h3>
+					<ul class="mrg-btm">
+						<li class="jstf"><a href="https://git-scm.com/download/linux">Linux</a></li>
+						<li class="jstf"><a href="https://git-scm.com/download/mac">Mac OSX</a></li>
+						<li class="jstf"><a href="https://desktop.github.com/">GitHub para Windows (Recomendado)</a></li>
+						<li class="jstf"><a href="https://git-scm.com/download/win">Windows</a></li>
+					</ul>
+
+					<h3>Configuraciones básicas</h3>
+					<pre>
+						<code data-trim data-noescape>
+$ git config --global user.name "Cosme Fulanito"
+$ git config --global user.email cosmefulanito@ejemplo.com
+						</code>
+					</pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Operaciones básicas</h2>
+				</section>
+				<section>
+					<h3>Creando repositorios</h3>
+					<ul class="mrg-btm width-90">
+						<li>
+							Utilizando un repositorio local nuevo
+							<pre><code data-trim data-noescape>
+# Repositorio local
+$ git init `nombre`
+								</code></pre>
+						</li>
+						<li>
+							Clonando un repositorio remoto ya existente
+							<pre><code data-trim data-noescape>
+								$ git clone `url`
+							</code></pre>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Agregando archivos al control de versiones</h3>
+					<p class="jstf">
+						Una vez creado el repositorio, querremos hacer cambios y generar nuevos commits para guardar instantáneas de los archivos. Git posee 5 estados para los archivos dentro de un repositorio:
+					</p>
+					<img src="img/lifecycle.png" alt="ciclo de vida" />
+				</section>
+				<section>
+					<h3>Agregando archivos al control de versiones</h3>
+					<pre><code data-trim data-noescape>
+# Creamos un archivo
+$ touch README.md
+
+# Vemos el estado del repositorio
+$ git status
+
+# Agregamos el archivo al stage
+$ git add README.md
+
+# Generamos un commit con un mensaje
+$ git commit -m "Creado archivo README"
+					</code></pre>
+					<p class="jstf">
+						Con eso ya hemos generado una instantánea de nuestro archivo vacío. Podremos seguir trabajando con el mismo e ir generando nuevos commits a medida que avanzamos
+					</p>
+				</section>
+
+				<section>
+					<h3>Revisando commits</h3>
+					<p></p>
+					<pre><code data-trim data-noescape>
+# Historial de commits en la consola
+$ git log
+
+# Historial de commits en la consola un poco mas ameno a los ojos
+$ git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+# Interfaz gráfica (requiere dependencias adicionales)
+$ gitk
+$ gitg
+					</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Sacándole el jugo a Git</h2>
+					<h3><small>Workflow básico al trabajar en equipo</small></h3>
+				</section>
+
+				<section>
+					<h3>Utilizando repositorios remotos</h3>
+					<p class="jstf">Para poder utilizar Git de manera colaborativa, es necesario poseer un repositorio remoto al cual todos los participantes del proyecto tengan acceso.
+					</p>
+					<pre><code data-trim data-noescape>
+# Listar repositorios remotos
+$ git remote -v
+
+# Agregar repositorios remotos
+$ git remote add `nombre-remoto` `url`
+
+# Obtener la informacion que se encuentra en el repositorio remoto
+$ git fecth `nombre-remoto`
+
+# Obtener la informacion que se encuentra en el repositorio remoto y agregar dichos cambios a los nuestros
+$ git pull `nombre-remoto`
+
+# Publicando cambios en los repositorios remotos
+$ git push -u `nombre-remoto` `nombre-rama`
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>El asunto de las Ramas</h3>
+					<p class="jstf">
+						Utilizamos las ramas para separarnos del desarrollo principal, probar cambios, desarrollar funcionalidades o mantener separado lo 'estable' de lo que no lo es.
+					</p>
+					<pre><code data-trim data-noescape>
+# Ver la rama actual
+$ git branch
+
+# Crear nueva rama
+$ git branch `nombre-branch`
+
+# Cambiar a esa rama
+$ git checkout `nombre-branch`
+
+# Alternativamente, crear y cambiar a esa rama al mismo tiempo
+$ git checkout -b `nombre-branch`
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Uniendo cambios</h3>
+					<p class="jstf">
+						Una vez que nuestra rama separada haya cumplido su funcionalidad, querremos re-integrarla a nuestra rama principal o a alguna otra rama dentro de nuestro repositorio
+					</p>
+					<pre><code data-trim data-noescape>
+# Volvemos a la rama principal
+$ git checkout master
+
+# Integramos los cambios de la otra rama
+$ git merge --no-ff `nombre-branch`
+
+# Borramos la rama
+$ git branch -d `nombre-branch`
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Resolviendo conflictos</h3>
+					<p class="jstf">
+						Cuando Git no puede unir los cambios de manera automática, nos delegara la responsabilidad de resolver los conflictos manualmente. Luego tendremos que añadir estos cambios a un nuevo commit para finalizar la operación de merge
+					</p>
+					<pre><code data-trim data-noescape>
+# Previsualizar diferencias entre ramas
+$ git diff master `nombre-branch`
+
+# Resolución de conflictos con herramienta gráfica.
+# opendiff kdiff3 tkdiff xxdiff meld tortoisemerge gvimdiff diffuse diffmerge ecmerge p4merge araxis bc codecompare emerge vimdiff
+$ git mergetool
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Modelo de workflow de trabajo</h3>
+					<img src="img/workflow.svg" alt="Modelo" height="600px">
+					<h6><a href="http://nvie.com/posts/a-successful-git-branching-model/">Referencia</a></h6>
+				</section>
+
+			</section>
+			<section>
+				<h5>Referencias y Ayudas</h5>
+				<pre>
+					<code data-trim data-noescape>
+$ git help `verb`
+$ git `verb` --help
+					</code>
+				</pre>
+
+				<ul>
+					<li><a href="https://git-scm.com">Git</a></li>
+					<li><a href="https://git-scm.com/book/en/v2">Pro Git</a></li>
+					<li><a href="https://guides.github.com/">GitHub Guides</a></li>
+					<li><a href="https://services.github.com/kit/downloads/github-git-cheat-sheet.pdf">GitHub's Git Cheatsheet</a></li>
+					<li><a href="https://services.github.com/kit/downloads/github-git-cheat-sheet.pdf">Simple Git Cheatsheet</a></li>
+					<li><a href="https://try.github.io/levels/1/challenges/1">Try Git - Tutorial interactivo basico de Git</a></li>
+					<li><a href="http://gitimmersion.com">GitImmersion - Una guia bastante extensiva paso a paso</a></li>
+					<li><a href="https://www.atlassian.com/git/tutorials">Tutoriales de Git por BitBucket</a></li>
+					<li><a href="http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/es/">Git Magic (Español)</a></li>
+					<li><a href="http://think-like-a-git.net/">Think like (a) Git</a></li>
+				</ul>
+			</section>
+			<section>
+				<!-- <h1>Q&A</h1> -->
+				<img src="img/QA.png" alt="Q&A" />
+				<h6><small><a href="https://github.com/hakimel/reveal.js">Powered by Reveal.JS</a></small></h6>
+			</section>
+		</div>
+
+	</div>
+
+	<!-- Reveal.JS Scripts and Configs -->
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			// The "normal" size of the presentation, aspect ratio will be preserved
+			// when the presentation is scaled to fit different resolutions. Can be
+			// specified using percentage units.
+			width: '100%',
+			height: '100%',
+
+			// Factor of the display size that should remain empty around the content
+			margin: 0.15,
+
+			// Bounds for smallest/largest possible scale to apply to content
+			minScale: 0.2,
+			maxScale: 1.5,
+
+			// Optional reveal.js plugins
+			dependencies: [{
+				src: 'lib/js/classList.js',
+				condition: function() {
+					return !document.body.classList;
+				}
+			}, {
+				src: 'plugin/highlight/highlight.pack.js',
+				async: true,
+				condition: function() {
+					return !!document.querySelector('pre code');
+				},
+				callback: function() {
+					hljs.initHighlightingOnLoad();
+				}
+			}]
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+/* Night theme overrides*/
+.reveal section img {
+  background: none !important;
+  border: none !important;
+}
+
+.reveal h1 {
+    font-size: 2.3em !important;
+}
+.reveal h2 {
+    font-size: 1.8em !important;
+}
+.reveal h3 {
+    font-size: 1.3em !important;
+}
+.reveal h4 {
+    font-size: 1em !important;
+}
+.reveal h5 {
+    font-size: 0.85em !important;
+}
+.reveal h6 {
+    font-size: 0.70em !important;
+}
+
+/*Reveal overrides*/
+.reveal pre code {
+  width: 95% !important;
+  margin: 0 auto !important;
+  font-size: 1.3em !important;
+  line-height: 1.05em !important;
+
+}
+
+.reveal pre {
+  box-shadow: none !important;
+}
+
+.smaller {
+    font-size: 20px !important;
+    width: 100%;
+    text-align: center !important;
+}
+.smaller li {
+    display: inline-block;
+    margin: 0 25px !important;
+}
+.middle {
+    vertical-align: middle !important;
+}
+.no-btm-margin {
+    margin-bottom: 0 !important;
+}
+.jstf {
+    text-align: justify !important;
+}
+.jstf strong {
+    color: gold;
+}
+em.error {
+    color: #cc0000;
+}
+.jstf small {
+    vertical-align: baseline !important;
+}
+small.stroke {
+    text-decoration: line-through;
+}
+
+.mrg-btm li{
+  margin-bottom: .8em !important;
+}
+
+.no-bullet{
+  list-style: none !important;
+}
+
+.width-90{
+  width: 90% !important;
+}
+/* Bootstrap overrides */
+pre {
+  background-color: inherit !important;
+}
+/* Bootstrap enforcments */
+.col-xs-12 {
+    width: 100% !important;
+}
+
+.col-xs-11 {
+    width: 91.66666667% !important;
+}
+
+.col-xs-10 {
+    width: 83.33333333% !important;
+}
+
+.col-xs-9 {
+    width: 75% !important;
+}
+
+.col-xs-8 {
+    width: 66.66666667% !important;
+}
+
+.col-xs-7 {
+    width: 58.33333333% !important;
+}
+
+.col-xs-6 {
+    width: 50% !important;
+}
+
+.col-xs-5 {
+    width: 41.66666667% !important;
+}
+
+.col-xs-4 {
+    width: 33.33333333% !important;
+}
+
+.col-xs-3 {
+    width: 25% !important;
+}
+
+.col-xs-2 {
+    width: 16.66666667% !important;
+}
+
+.col-xs-1 {
+    width: 8.33333333% !important;
+}
+
+.col-xs-offset-12 {
+    margin-left: 100% !important;
+}
+
+.col-xs-offset-11 {
+    margin-left: 91.66666667% !important;
+}
+
+.col-xs-offset-10 {
+    margin-left: 83.33333333% !important;
+}
+
+.col-xs-offset-9 {
+    margin-left: 75% !important;
+}
+
+.col-xs-offset-8 {
+    margin-left: 66.66666667% !important;
+}
+
+.col-xs-offset-7 {
+    margin-left: 58.33333333% !important;
+}
+
+.col-xs-offset-6 {
+    margin-left: 50% !important;
+}
+
+.col-xs-offset-5 {
+    margin-left: 41.66666667% !important;
+}
+
+.col-xs-offset-4 {
+    margin-left: 33.33333333% !important;
+}
+
+.col-xs-offset-3 {
+    margin-left: 25% !important;
+}
+
+.col-xs-offset-2 {
+    margin-left: 16.66666667% !important;
+}
+
+.col-xs-offset-1 {
+    margin-left: 8.33333333% !important;
+}
+
+.col-xs-offset-0 {
+    margin-left: 0 !important;
+}
+
+
+/* Font Awesome enforcment */
+.fa-twitter,
+.fa-github {
+  font-family: FontAwesome !important;
+}
